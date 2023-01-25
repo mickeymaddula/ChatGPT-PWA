@@ -1,15 +1,16 @@
-const runtimeCaching = require("next-pwa/cache");
-const withPWA = require("next-pwa")({
+import runtimeCaching from "next-pwa/cache";
+import withPWA from "next-pwa";
+const withPWAHOC = withPWA({
   disable: process.env.NODE_ENV === "development",
   dest: "public",
   register: true,
   skipWaiting: false,
   runtimeCaching,
 });
-const nextConfig = withPWA({
+const nextConfig = withPWAHOC({
   experimental: {
     appDir: true,
   },
 });
 
-module.exports = nextConfig;
+export default nextConfig;
